@@ -1,8 +1,10 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React, { useState, useEffect, useContext } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //importscreen
 
@@ -12,10 +14,18 @@ import ScheduleScreen from '../screens/schedule/ScheduleScreen';
 import ReportScreen from '../screens/report/ReportScreen';
 import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import CompletedTasksDetail from '../screens/completed_tasks_detail/CompletedTasksDetail';
+import TaskInstructionScreen from '../screens/task_instruction/TaskInstructionScreen';
+import NotificationListScreen from '../screens/notification/NotificationListScreen';
+
+import SplashScreen from '../components/SplashScreen/SplashScreen';
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
+
+
+
+
 
 const HomeStack = () => {
   return (
@@ -26,13 +36,19 @@ const HomeStack = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="CompletedTasksDetail"
         component={CompletedTasksDetail}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="NotificationList"
+        component={NotificationListScreen}
+        options={{ headerShown: false }}
+      />
+
     </Stack.Navigator>
   );
 };
@@ -42,15 +58,17 @@ const BottomTab = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: '#9EE96F',
         headerShown: false,
+        activeTintColor: '#9EE96F',
+        inactiveTintColor: '#000',
       }}>
       <Tab.Screen
         name="HomeStack"
         component={HomeStack}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: () => <AntDesign name="home" color="#000" size={22} />,
+          tabBarIcon: ({ color }) => <AntDesign name="home" color={color} size={22} />,
         }}
       />
       <Tab.Screen
@@ -58,8 +76,8 @@ const BottomTab = () => {
         component={TasklistScreen}
         options={{
           tabBarLabel: 'TaskList',
-          tabBarIcon: () => (
-            <AntDesign name="switcher" color="#000" size={22} />
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="switcher" color={color} size={22} />
           ),
         }}
       />
@@ -68,8 +86,8 @@ const BottomTab = () => {
         component={ScheduleScreen}
         options={{
           tabBarLabel: 'Schedule',
-          tabBarIcon: () => (
-            <AntDesign name="calendar" color="#000" size={22} />
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="calendar" color={color} size={22} />
           ),
         }}
       />
@@ -78,7 +96,7 @@ const BottomTab = () => {
         component={WelcomeScreen}
         options={{
           tabBarLabel: 'Report',
-          tabBarIcon: () => <AntDesign name="file1" color="#000" size={22} />,
+          tabBarIcon: ({ color }) => <AntDesign name="file1" color={color} size={22} />,
         }}
       />
     </Tab.Navigator>
@@ -86,23 +104,55 @@ const BottomTab = () => {
 };
 
 export const AppNavigator = () => {
+
+  const [firstLaunch, setFirstLaunch] = React.useState(null);
+
+  React.useEffect(() => {
+    async function setData() {
+      const appData = await AsyncStorage.getItem("appLaunched");
+      if (appData == null) {
+        setFirstLaunch(true);
+        AsyncStorage.setItem("appLaunched", "false");
+      } else {
+        setFirstLaunch(false);
+      }
+    }
+    setData();
+  }, []);
+
+
+  
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen
-          name="Main"
-          component={BottomTab}
-          options={{headerShown: false}}
-        />
-        {/* <Stack.Screen
+    firstLaunch != null && (
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+
+          {firstLaunch && (
+            <Stack.Screen name="GetStarted" component={WelcomeScreen} />
+          )}
+
+          <Stack.Screen
+            name="Main"
+            component={BottomTab}
+            options={{ headerShown: false }}
+          />
+          {/* <Stack.Screen
           name="CompletedTasksDetail"
           component={CompletedTasksDetail}
           options={{headerShown: false}}
         /> */}
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="Taskinstruction"
+            component={TaskInstructionScreen}
+            options={{ headerShown: false }}
+          />
+
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
   );
 };

@@ -46,9 +46,13 @@ const HometaskCard = () => {
     navigation.navigate('CompletedTasksDetail');
   };
 
+  const handleTaskInstruction = () => {
+    navigation.navigate('Taskinstruction')
+  }
+
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity style={styles.cardBodyContainer}>
+      <TouchableOpacity style={styles.cardBodyContainer} onPress={handleTaskInstruction} activeOpacity={0.9}>
         <View style={styles.cardContainer}>
           {/* Picture */}
           <View style={styles.ratingContainer}>

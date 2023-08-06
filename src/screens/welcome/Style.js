@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -21,16 +22,35 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         marginBottom: 50,
+        
+    },
+    textContainer:{
+        marginTop:wp(60),
+    },
+    welcomText:{
+        fontSize:35,
+        width:'100%',
+        marginLeft:10,
+        color:'#000',
+        fontWeight:'bold',
     },
     getStartedButton: {
-        backgroundColor: '#007bff',
+        marginTop:wp(10),
+        height:wp(15),
+       
+        backgroundColor: '#D3F4BE',
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderRadius: 5,
+        width:wp(85),
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:50,
     },
     buttonText: {
         color: '#fff',
-        fontSize: 18,
+        fontSize: 20,
+        color:'#000',
         fontWeight: 'bold',
     },
 });

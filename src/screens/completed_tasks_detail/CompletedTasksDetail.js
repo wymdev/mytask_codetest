@@ -28,12 +28,12 @@ const CompletedTasksDetail = () => {
       <TouchableOpacity
         onPress={onPressDate}
         style={{
-          backgroundColor: isSelected ? '#03C988' : '#ffffff',
+          backgroundColor: isSelected ? '#9EE96F' : '#ffffff',
           marginRight: 15,
           paddingHorizontal: 15,
           paddingVertical: 6,
           borderRadius: 10,
-          borderColor: '#03C988',
+          borderColor: '#9EE96F',
           borderWidth: 2,
         }}>
         <View>
@@ -44,7 +44,7 @@ const CompletedTasksDetail = () => {
     );
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#03C988'}}>
+    <View style={{flex: 1, backgroundColor: '#9EE96F'}}>
       <CustomHeader showNotification={true} style={{paddingVertical: 30}} />
       <View style={styles.cardContainer}>
         <Text

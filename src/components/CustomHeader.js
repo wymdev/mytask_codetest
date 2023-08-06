@@ -1,9 +1,14 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 import styles from './Style';
 
 const CustomHeader = ({showNotification = true, style}) => {
+  const navigation = useNavigation();
+  const handleNoti = () => {
+    navigation.navigate('NotificationList');
+  }
   return (
     <View style={[styles.container, style]}>
       {/* Profile Picture */}
@@ -26,7 +31,7 @@ const CustomHeader = ({showNotification = true, style}) => {
 
       {/* Notification Icon */}
       {showNotification && (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleNoti}>
           <Icon name="bell" size={24} color="#fff" style={styles.icon} />
         </TouchableOpacity>
       )}
