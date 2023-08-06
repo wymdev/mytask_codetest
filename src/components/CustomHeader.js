@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './Style';
 
-const CustomHeader = ({ showNotification = true }) => {
+const CustomHeader = ({showNotification = true, style}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {/* Profile Picture */}
       <TouchableOpacity>
         <Image
@@ -15,12 +15,8 @@ const CustomHeader = ({ showNotification = true }) => {
       </TouchableOpacity>
 
       <View style={styles.nameText}>
-        <Text style={styles.text}>
-          Hello,
-        </Text>
-        <Text style={styles.text}>
-          John
-        </Text>
+        <Text style={styles.text}>Hello,</Text>
+        <Text style={styles.text}>John</Text>
       </View>
 
       {/* Search Icon */}
@@ -35,7 +31,7 @@ const CustomHeader = ({ showNotification = true }) => {
         </TouchableOpacity>
       )}
     </View>
-  )
-}
+  );
+};
 
-export default CustomHeader
+export default CustomHeader;
