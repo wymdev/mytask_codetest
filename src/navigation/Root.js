@@ -93,7 +93,7 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Report"
-        component={WelcomeScreen}
+        component={ReportScreen}
         options={{
           tabBarLabel: 'Report',
           tabBarIcon: ({ color }) => <AntDesign name="file1" color={color} size={22} />,
