@@ -12,9 +12,9 @@ const TaskInstructionScreen = () => {
     return (
         <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
             <CustomHeader showNotification={false} />
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <ImageCard picture={require('../../assets/floorcleaning.png')} />
-                <View style={{marginLeft:10}}>
+                <View style={{ marginLeft: 10 }}>
                     <View>
                         <Text style={styles.texttitle}>
                             Floor Cleaning
@@ -32,9 +32,10 @@ const TaskInstructionScreen = () => {
                         </Text>
                     </View>
                     <Text style={styles.steptitle}>Steps to follow</Text>
-                    <ListCard />
+
                 </View>
-                <CompleteButton/>
+                <ListCard />
+                <CompleteButton />
             </ScrollView>
         </View>
     )

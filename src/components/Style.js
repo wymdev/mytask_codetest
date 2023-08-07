@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-
     backgroundColor: '#232323',
   },
   profilePicture: {
@@ -19,13 +18,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   nameText: {
-    marginRight: wp(47),
+    marginRight: wp(40),
   },
   text: {
     color: 'white',
   },
   icon: {
-    marginLeft: 20,
+    marginLeft: wp(9),
   },
 
   completedTaskContainer: {
