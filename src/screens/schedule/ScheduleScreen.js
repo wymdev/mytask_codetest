@@ -1,7 +1,7 @@
 import { View, Text, ScrollView } from 'react-native';
 import React from 'react';
 import moment from 'moment';
-import ScheduleFileter from '../../components/Fiter/ScheduleFileter';
+import ScheduleFileter from '../../components/Filter/ScheduleFilter';
 import CustomHeader from '../../components/CustomHeader';
 
 import styles from './Style';
