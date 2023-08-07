@@ -33,8 +33,9 @@ const WelcomeScreen = () => {
     <View style={styles.container}>
       <Animated.View style={[styles.photoContainer, { opacity: fadeAnim }]}>
         <Image
-          source={require('../../assets/profile.jpg')}
+          source={require('../../assets/splashlogo.png')}
           style={styles.photo}
+          resizeMode='contain'
         />
       </Animated.View>
       {/* <View style={styles.textContainer}>
